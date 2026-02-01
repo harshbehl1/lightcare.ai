@@ -1,6 +1,6 @@
 import { getToken, removeToken } from "../utils/authStorage";
 import { Navigate, useNavigate } from "react-router-dom";
-
+import Header from "../components/header";  
 import AISummaryCard from "../components/AISummaryCard";
 import SummaryCard from "../components/SummaryCard";
 import UploadCard from "../components/UploadCard";
@@ -27,6 +27,7 @@ export default function Dashboard() {
         padding: "32px 16px"
       }}
     >
+      <Header />
       {/* HEADER */}
       <div
         style={{
@@ -37,7 +38,6 @@ export default function Dashboard() {
         }}
       >
         <h1 style={{ margin: 0 }}>Medical Memory</h1>
-        <button onClick={handleLogout}>Logout</button>
       </div>
 
       {/* AI HEALTH SUMMARY */}
