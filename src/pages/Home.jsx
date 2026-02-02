@@ -1,7 +1,11 @@
-import { useNavigate } from "react-router-dom";
-
+import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+import Login from "./Login";
+import Signup from "./Signup";
 export default function Home() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const [showlogin, setShowLogin] = useState(false);
+  const [showsignup, setShowSignup] = useState(false);
 
   return (
     <div
@@ -13,6 +17,7 @@ export default function Home() {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         position: "relative",
+        overflow: "hidden",
       }}
     >
       {/* DARK OVERLAY */}
@@ -42,10 +47,11 @@ export default function Home() {
           <h2 style={{ fontWeight: 700, color: "#E5E7EB" }}>
             LightCare<span style={{ color: "#2DD4BF" }}>.ai</span>
           </h2>
+          
 
           <div style={{ display: "flex", gap: "16px" }}>
             <button
-              onClick={() => navigate("/login")}
+              onClick={() => setShowLogin(true)}
               style={{
                 background: "transparent",
                 border: "1px solid rgba(255,255,255,0.25)",
@@ -60,7 +66,7 @@ export default function Home() {
             </button>
 
             <button
-              onClick={() => navigate("/signup")}
+              onClick={() => setShowSignup(true)}
               style={{
                 background: "#14B8A6",
                 color: "#022C22",
@@ -112,7 +118,7 @@ export default function Home() {
 
           <div style={{ display: "flex", justifyContent: "center", gap: "18px" }}>
             <button
-              onClick={() => navigate("/signup")}
+              onClick={() => setShowSignup(true)}
               style={{
                 background: "#14B8A6",
                 color: "#022C22",
@@ -128,7 +134,7 @@ export default function Home() {
             </button>
 
             <button
-              onClick={() => navigate("/login")}
+              onClick={() => setShowLogin(true)}
               style={{
                 background: "transparent",
                 color: "#F9FAFB",
@@ -143,6 +149,54 @@ export default function Home() {
             </button>
           </div>
         </main>
+        {/* signup slide panel */}
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100vh",
+            background: "rgba(6,18,28,0.95)",
+
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            transform: showsignup ? "translateX(0)" : "translateX(-100%)",
+            transition: "transform 0.9s cubic-bezier(0.4, 0, 0.2, 1)",
+            zIndex: 2,
+          }}
+        >
+          {/* SIGNUP CARD */}
+          <div>
+            <Signup onClose={() => setShowSignup(false)} />  
+          </div>
+        </div>
+        {/* LOGIN SLIDE PANEL */}
+          <div
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100vh",
+              background: "rgba(6,18,28,0.95)",
+
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+
+              transform: showlogin ? "translateY(0)" : "translateY(-100%)",
+              transition: "transform 0.9s cubic-bezier(0.4, 0, 0.2, 1)",
+
+              zIndex: 3,
+            }}
+          >
+             {/* LOGIN CARD */}
+              <div>
+                <Login onClose={() => setShowLogin(false)} />
+              </div>
+          </div>
       </div>
     </div>
   );

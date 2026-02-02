@@ -2,57 +2,106 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { setToken } from "../utils/authStorage";
 
-export default function Login() {
+const inputStyle = {
+  width: "100%",
+  padding: "14px",
+  marginBottom: "14px",
+  borderRadius: "12px",
+  border: "none",
+  outline: "none",
+  fontSize: "14px",
+};
+
+const buttonStyle = {
+  width: "100%",
+  padding: "14px",
+  borderRadius: "14px",
+  border: "none",
+  background: "#14B8A6",
+  color: "#022C22",
+  fontWeight: 600,
+  cursor: "pointer",
+};
+
+export default function Login({ onClose }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (!email || !password) return;
 
-    if (!email || !password) {
-      alert("Please enter email and password");
-      return;
-    }
-
-    // MOCK LOGIN SUCCESS
-    const mockToken = "mock_jwt_token";
-
-    setToken(mockToken);
+    setToken("mock_jwt_token");
     navigate("/dashboard");
   }
 
   return (
-    <div style={{ maxWidth: "400px", margin: "50px auto" }}>
-      <h2>Login</h2>
+    <div
+      style={{
+        width: "360px",
+        padding: "36px",
+        borderRadius: "18px",
 
+        background: "rgba(255,255,255,0.18)",
+        backdropFilter: "blur(18px)",
+
+        boxShadow: "0 30px 60px rgba(0,0,0,0.45)",
+        color: "#F9FAFB",
+        textAlign: "center",
+      }}
+    >
+      {/* HEADER */}
+      <div style={{ marginBottom: "28px" }}>
+        <h2 style={{ marginBottom: "6px" }}>Login</h2>
+        <p style={{ fontSize: "14px", color: "#CBD5E1" }}>
+          Welcome back
+        </p>
+      </div>
+
+      {/* FORM */}
       <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          style={inputStyle}
+        />
 
-        <div>
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          style={inputStyle}
+        />
 
-        <button type="submit">Login</button>
+        <button type="submit" style={buttonStyle}>
+          Login
+        </button>
       </form>
 
-      <p>
+      {/* FOOTER */}
+      <p style={{ marginTop: "16px", fontSize: "14px" }}>
         Don’t have an account? <Link to="/signup">Sign up</Link>
       </p>
+
+      <button
+        onClick={onClose}
+        style={{
+          marginTop: "18px",
+          background: "none",
+          border: "none",
+          color: "#9CA3AF",
+          cursor: "pointer",
+          fontSize: "14px",
+        }}
+      >
+        Close
+      </button>
     </div>
   );
 }

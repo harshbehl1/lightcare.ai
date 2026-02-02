@@ -1,0 +1,100 @@
+/* Header Container */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: #ffffff;
+    /* White background */
+    color: #374151;
+    /* Gray-700 */
+    border-bottom: 1px solid #e5e7eb;
+    /* Gray-200 */
+    box-sizing: border-box;
+}
+
+/* Header Left (Logo + Nav) */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.header-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2563eb;
+    /* Blue-600 */
+    margin: 0;
+    letter-spacing: -0.025em;
+}
+
+/* Navigation */
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.header-nav li {
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.header-nav li:hover {
+    color: #1d4ed8;
+    /* Blue-700 */
+}
+
+.header-nav li.active {
+    color: #2563eb;
+    /* Blue-600 */
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 0.25rem;
+}
+
+/* Right Side Actions */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.header-btn {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 0;
+}
+
+.header-btn:hover {
+    color: #1d4ed8;
+    /* Blue-700 */
+}
+
+.header-divider {
+    height: 1.5rem;
+    width: 1px;
+    background-color: #d1d5db;
+    /* Gray-300 */
+}
+
+.header-logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.header-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
