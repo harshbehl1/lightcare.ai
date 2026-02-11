@@ -2,6 +2,7 @@ import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import Login from "./Login";
 import Signup from "./Signup";
+
 export default function Home() {
   // const navigate = useNavigate();
   const [showlogin, setShowLogin] = useState(false);
@@ -151,6 +152,7 @@ export default function Home() {
         </main>
         {/* signup slide panel */}
         <div
+          onClick={() => setShowSignup(false)}
           style={{
             position: "fixed",
             top: 0,
@@ -167,13 +169,19 @@ export default function Home() {
             zIndex: 2,
           }}
         >
-          {/* SIGNUP CARD */}
-          <div>
-            <Signup onClose={() => setShowSignup(false)} />  
+          <div onClick={(e) => e.stopPropagation()}>
+            <Signup 
+              onClose={() => setShowSignup(false)} 
+              onSwitchToLogin={() => {
+                setShowSignup(false);
+                setShowLogin(true);
+              }}
+            />  
           </div>
         </div>
         {/* LOGIN SLIDE PANEL */}
           <div
+            onClick={() => setShowLogin(false)}
             style={{
               position: "fixed",
               top: 0,
@@ -193,8 +201,14 @@ export default function Home() {
             }}
           >
              {/* LOGIN CARD */}
-              <div>
-                <Login onClose={() => setShowLogin(false)} />
+              <div onClick={(e) => e.stopPropagation()}>
+                <Login 
+                  onClose={() => setShowLogin(false)} 
+                  onSwitchToSignup={() => {
+                    setShowLogin(false);
+                    setShowSignup(true);
+                  }}
+                />
               </div>
           </div>
       </div>

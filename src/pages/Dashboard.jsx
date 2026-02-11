@@ -14,10 +14,10 @@ export default function Dashboard() {
     return <Navigate to="/login" />;
   }
 
-  function handleLogout() {
-    removeToken();
-    navigate("/login");
-  }
+  // function handleLogout() {
+  //   removeToken();
+  //   navigate("/login");
+  // }
 
   return (
     <div
